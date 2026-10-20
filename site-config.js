@@ -6,7 +6,7 @@
 // applies these values on page load.
 window.SITE = {
   // Cache-busting version. Bump with:  python3 tools/sync-meta.py --bump
-  "assetVersion": "202610201000",
+  "assetVersion": "202610201004",
   "brandName": "Ricard Retreats",
   "hostName": "Ricard Chillon",
   "hostTitle": "Personal trainer and yoga teacher",
@@ -75,6 +75,7 @@ window.SITE = {
   },
 
   "contact": {
+    "eyebrow": "Contact",
     "heading": "Get in touch with Ricard",
     "intro": "Interested in a retreat, a yoga class or one-to-one training? Contact Ricard for details and availability.",
     "ctaLabel": "Message Ricard on Instagram",
