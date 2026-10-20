@@ -1,8 +1,14 @@
-# Ricard Retreats (website preview)
+# Ricard Retreats (website)
 
 Static site for Ricard Chillon's Lanzarote yoga retreat, 5–10 November 2026.
-Plain HTML/CSS/JS, no build step. Hosted on GitHub Pages from the `main` branch root
-(the repository and URL keep the older name `ricardo-retreats` so existing links keep working).
+Plain HTML/CSS/JS, no build step.
+
+Live site: https://ricard-retreats.github.io/
+Repository: `ricard-retreats/ricard-retreats.github.io` (GitHub organisation `ricard-retreats`),
+published with GitHub Pages from the `main` branch root (legacy build, `.nojekyll`).
+
+The older preview at https://fergalfinnerty.github.io/ricardo-retreats/ (repo
+`fergalfinnerty/ricardo-retreats`) is legacy; edit this repository instead.
 
 ## Editing content
 1. Edit `site-config.js` (brand name, host name/title/bio, RR badge labels, playful line,
@@ -55,14 +61,12 @@ successful (2xx) response, otherwise a friendly error pointing to Instagram.
 ## Site address
 All asset paths are relative, so the site works at any address. The canonical link, `og:url` and
 the absolute `og:image` come from `meta.siteUrl` (written into the HTML by `tools/sync-meta.py`).
-It is currently the live preview address https://fergalfinnerty.github.io/ricardo-retreats/.
+It is set to the live address https://ricard-retreats.github.io/.
 
-Planned clean address (not live yet): https://ricard-retreats.github.io/, which needs a GitHub
-organisation called `ricard-retreats` (not created yet). Once it exists, run
-`tools/deploy-clean-url.sh --yes`. It creates the repo `ricard-retreats/ricard-retreats.github.io`,
-copies this site into it (without `.git` and `assets/raw`), sets `meta.siteUrl`, runs
-`sync-meta.py`, pushes to `main` and turns on Pages. Without `--yes` it only prints the plan.
-Check the new address loads before sharing it.
+The `ricard-retreats` organisation exists and this repository is the published site.
+`tools/deploy-clean-url.sh` was the one-off script that first created this repo from the legacy
+preview; it refuses to run now that the repo exists, so don't use it for normal updates. Just
+edit, run `sync-meta.py --bump`, commit and push to `main`.
 
 ## Draft status
 `<meta name="robots" content="noindex, nofollow">` stays in `index.html` until the site is approved.
