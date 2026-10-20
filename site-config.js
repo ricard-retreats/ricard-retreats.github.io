@@ -6,9 +6,10 @@
 // applies these values on page load.
 window.SITE = {
   // Cache-busting version. Bump with:  python3 tools/sync-meta.py --bump
-  "assetVersion": "202610201343",
+  "assetVersion": "202610201355",
   "brandName": "Ricard Retreats",
   "hostName": "Ricard Chillon",
+  "hostEyebrow": "About Ricard",
   "hostTitle": "Personal trainer and yoga teacher",
   "hostCredentials": "Level 3 personal trainer · 200-hour YMCA yoga teacher training",
   "hostStatement": "Movement, reflection and connection, brought together.",
@@ -35,6 +36,7 @@ window.SITE = {
     "villa": "The villa",
     "food": "Food",
     "details": "Dates & details",
+    "lanzaroteEnquiry": "Join Ricard in Lanzarote",
     "crete": "Crete Adventure · 2027",
     "yoga": "Yoga Classes",
     "training": "Personal Training",
@@ -72,6 +74,18 @@ window.SITE = {
     "roomsNote": "For directions and room sharing details, just ask Ricard.",
     "availabilityPaymentNote": "Ask Ricard about current availability and payment arrangements.",
     "freeTimeNote": "Free time to rest or explore at your own pace."
+  },
+
+  // Lanzarote enquiry close (end of the retreat story, before Crete). The hero button links to "anchor".
+  "lanzaroteEnquiry": {
+    "anchor": "#lanzarote-enquiry",
+    "heading": "Join Ricard in Lanzarote",
+    "intro": "Thinking of joining us? Message Ricard to ask about availability, rooms or anything you'd like to know.",
+    "emailLabel": "Email Ricard",
+    "emailHref": "mailto:ricardchillon@gmail.com?subject=Lanzarote%20retreat%20enquiry",
+    "emailText": "ricardchillon@gmail.com",
+    "instagramLabel": "Message Ricard on Instagram",
+    "instagramUrl": "https://www.instagram.com/ricardchillonpt/"
   },
 
   "contact": {

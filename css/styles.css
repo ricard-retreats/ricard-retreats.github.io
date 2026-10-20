@@ -416,6 +416,20 @@ figcaption { font-size: 0.875rem; color: var(--muted); margin-top: 0.7rem; paddi
 .next-body { margin: 0 auto 2rem; max-width: 36rem; color: var(--ink); }
 .next-actions { margin: 0; }
 
+/* Lanzarote enquiry close: light, centred end to the retreat story */
+.lanzarote-enquiry { border-top: 1px solid var(--rule); }
+.lz-enquiry-inner { max-width: 46rem; text-align: center; }
+.lz-enquiry-inner h2 { margin-bottom: 1.3rem; }
+.lz-enquiry-intro { font-family: var(--serif); font-size: clamp(1.35rem, 2.3vw, 1.65rem); line-height: 1.4; color: var(--charcoal); margin: 0 auto 2rem; max-width: 32ch; }
+.lz-enquiry-actions { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem 1rem; }
+.lz-enquiry-email { margin: 1.2rem 0 0; color: var(--muted); font-size: 1rem; }
+.lz-enquiry-email a { font-weight: 600; overflow-wrap: anywhere; }
+
+/* About Ricard: a thin rule before the eyebrow marks the move from retreats to Ricard in London */
+.eyebrow-ruled { display: flex; align-items: center; gap: 0.9rem; }
+.eyebrow-ruled::before { content: ""; width: 2.5rem; height: 1px; background: var(--terracotta); flex: none; }
+.pt .review { background: var(--sand); }
+
 /* Footer */
 .site-footer { padding: 3.5rem 0 3rem; }
 .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center; }
