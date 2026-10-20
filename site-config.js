@@ -6,7 +6,7 @@
 // applies these values on page load.
 window.SITE = {
   // Cache-busting version. Bump with:  python3 tools/sync-meta.py --bump
-  "assetVersion": "202610200858",
+  "assetVersion": "202610200946",
   "brandName": "Ricard Retreats",
   "hostName": "Ricard Chillon",
   "hostTitle": "Personal trainer and yoga teacher",
@@ -77,6 +77,56 @@ window.SITE = {
   "chef": {
     "instagramUrl": "https://www.instagram.com/maurosiepechef/",
     "instagramHandle": "@maurosiepechef"
+  },
+
+  // Monthly London yoga class (section after the host introduction).
+  // nextClass: shown until endsAt (ISO time with offset), then hidden automatically by js/main.js.
+  // To show the next one, edit label and endsAt. Set "label": "" to hide the line.
+  "londonYoga": {
+    "eyebrow": "Monthly yoga · Oval",
+    "heading": "Practise with Ricard in London",
+    "body": "A little space in your month to slow down, move and reconnect. Ricard's two-hour classes bring together grounding, breathwork, an opening mantra, vinyasa, and yin and meditation. Beginners and experienced practitioners are welcome.",
+    "facts": "Two hours · £20 per session · All levels",
+    "venue": "Fison Fitness · 33 Palfrey Place, Oval, London SW8 1PE",
+    "venueLinkText": "The studio / directions",
+    "venueUrl": "https://www.fisonfitness.co.uk/oval",
+    "nextClass": {
+      "label": "Next class: Sunday 25 October 2026 · 12–2pm",
+      "endsAt": "2026-10-25T14:00:00+00:00"
+    },
+    "instagramCta": "Ask Ricard about spaces",
+    "instagramUrl": "https://www.instagram.com/ricardchillonpt/",
+    "emailCta": "Email Ricard",
+    "emailHref": "mailto:ricardchillon@gmail.com?subject=Monthly%20yoga%20in%20Oval",
+    "image": {
+      "webp": "assets/images/oval-studio.webp",
+      "jpg": "assets/images/oval-studio.jpg",
+      "width": 900,
+      "height": 1125,
+      "alt": "The empty yoga studio at Fison Fitness in Oval, London: mats, bolsters and blocks on a warm wooden floor under woven pendant lights",
+      "caption": "The studio at Fison Fitness, Oval, London"
+    }
+  },
+
+  // One-to-one personal training (section after London yoga). No prices on purpose.
+  // testimonials: verified client reviews only, {"quote": "...", "name": "...", "sourceUrl": "..."},
+  // shown as cards under "In their words". Empty list [] = nothing is shown.
+  "personalTraining": {
+    "eyebrow": "Personal training · London",
+    "heading": "One-to-one with Ricard",
+    "body": "Training shaped around you, with Ricard's full attention. As a Level 3 personal trainer and yoga teacher, he brings together strength, mobility and mindful movement, at a pace that suits you. Get in touch to talk through what you'd like to work on, and to ask about details and availability.",
+    "instagramCta": "Ask Ricard about training",
+    "instagramUrl": "https://www.instagram.com/ricardchillonpt/",
+    "emailCta": "Email Ricard",
+    "emailHref": "mailto:ricardchillon@gmail.com?subject=Personal%20training%20enquiry",
+    "testimonialsLabel": "In their words",
+    "testimonialSourceLabel": "Client review shared on Instagram",
+    "testimonialLinkText": "Read on Instagram",
+    "testimonials": [
+      {"quote": "Every session is genuinely enjoyable, and his calm, focused approach sets him apart.", "name": "Fergal", "sourceUrl": "https://www.instagram.com/ricardchillonpt/p/DCfWtpcNh7G/"},
+      {"quote": "I found Ricky’s positive mindset and tailored approach made all the difference for me.", "name": "Russell", "sourceUrl": "https://www.instagram.com/ricardchillonpt/p/DPMULamDNnh/"},
+      {"quote": "He is a great motivator, friendly and always responsive and reliable.", "name": "Matthew", "sourceUrl": "https://www.instagram.com/ricardchillonpt/p/DFuScuFtHAr/"}
+    ]
   },
 
   // "Next retreat" section near the end of the page. No dates or prices on purpose.

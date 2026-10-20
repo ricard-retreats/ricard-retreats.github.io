@@ -133,6 +133,21 @@ def mailto(cfg):
     return "mailto:" + email + ("?subject=" + quote(subj) if subj else "")
 
 
+def review_card(t, pt):
+    q = esc(t["quote"]).replace("&#x27;", "'")
+    link = ""
+    if t.get("sourceUrl"):
+        link = (f'<a class="review-link" href="{esc(t["sourceUrl"])}" target="_blank" rel="noopener noreferrer">'
+                f'{esc(pt.get("testimonialLinkText") or "Read on Instagram")}'
+                f'<span class="visually-hidden"> (opens in a new tab)</span></a>')
+    src = esc(pt.get("testimonialSourceLabel") or "")
+    return ('            <figure class="review">\n'
+            f'              <blockquote><p>{q}</p></blockquote>\n'
+            f'              <figcaption><span class="review-name">{esc(t["name"])}</span>'
+            f'<span class="review-source">{src}</span>{link}</figcaption>\n'
+            '            </figure>')
+
+
 def replace_block(s, name, content):
     pat = re.compile(r"(<!-- %s:START[^>]*-->)(.*?)(\s*<!-- %s:END -->)" % (name, name), re.S)
     if not pat.search(s):
@@ -167,6 +182,24 @@ def main():
     s = re.sub(r"<[^<>]*\bdata-email-only\b[^<>]*>", email_only, s)
     if href:
         s = re.sub(r"(<[^<>]*\bdata-email-link\b[^<>]*\shref=\")[^\"]*", lambda mo: mo.group(1) + esc(href), s)
+
+    # London yoga next-class line: copy endsAt into data-ends-at; hide statically if the label is empty
+    nc = get(cfg, "londonYoga.nextClass") or {}
+    def next_class(mo):
+        tag = re.sub(r"\s+hidden(?=[\s>])", "", mo.group(0))
+        if nc.get("endsAt"):
+            tag = re.sub(r'data-ends-at="[^"]*"', 'data-ends-at="%s"' % esc(nc["endsAt"]), tag)
+        return tag if (nc.get("label") or "").strip() else tag[:-1] + " hidden>"
+    s = re.sub(r"<[^<>]*\bdata-next-class\b[^<>]*>", next_class, s)
+
+    # Personal training reviews (TESTIMONIALS block); the wrapper is hidden when the list is empty
+    pt = get(cfg, "personalTraining") or {}
+    reviews = [t for t in (pt.get("testimonials") or []) if t.get("quote") and t.get("name")]
+    s = replace_block(s, "TESTIMONIALS", "\n".join(review_card(t, pt) for t in reviews))
+    def pt_wrap(mo):
+        tag = re.sub(r"\s+hidden(?=[\s>])", "", mo.group(0))
+        return tag if reviews else tag[:-1] + " hidden>"
+    s = re.sub(r'<div class="pt-testimonials" id="pt-testimonials"[^<>]*>', pt_wrap, s, count=1)
 
     missing = []
 

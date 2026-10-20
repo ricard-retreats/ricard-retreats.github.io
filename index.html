@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-GB" data-asset-version="202610200858">
+<html lang="en-GB" data-asset-version="202610200946">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,10 +24,10 @@
   <meta name="twitter:image" content="https://ricard-retreats.github.io/assets/images/og-cover.jpg">
   <!-- META:END -->
   <meta name="theme-color" content="#345a48">
-  <link rel="icon" href="favicon.svg?v=202610200858" type="image/svg+xml">
+  <link rel="icon" href="favicon.svg?v=202610200946" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/styles.css?v=202610200858">
-  <script src="site-config.js?v=202610200858"></script>
+  <link rel="stylesheet" href="css/styles.css?v=202610200946">
+  <script src="site-config.js?v=202610200946"></script>
 </head>
 <body id="top">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -54,6 +54,9 @@
         <ul>
           <li><a href="#experience">Experience</a></li>
           <li><a href="#host">Ricard</a></li>
+          <li class="nav-desktop-only"><a href="#london-yoga">London</a></li>
+          <li class="nav-mobile-only"><a href="#london-yoga">London yoga</a></li>
+          <li class="nav-mobile-only"><a href="#personal-training">Personal training</a></li>
           <li><a href="#villa">The villa</a></li>
           <li><a href="#food">Food</a></li>
           <li><a href="#details">Details</a></li>
@@ -83,8 +86,8 @@
         </div>
         <figure class="hero-figure">
           <picture>
-            <source type="image/webp" srcset="assets/images/hero-room-sea.webp?v=202610200858" data-bind-srcset="images.hero.webp">
-            <img src="assets/images/hero-room-sea.jpg?v=202610200858" data-bind-src="images.hero.jpg" data-bind-alt="images.hero.alt" width="464" height="620" alt="A bright room at the villa, with two chairs by sheer curtains and glass doors opening onto a view of the sea" fetchpriority="high">
+            <source type="image/webp" srcset="assets/images/hero-room-sea.webp?v=202610200946" data-bind-srcset="images.hero.webp">
+            <img src="assets/images/hero-room-sea.jpg?v=202610200946" data-bind-src="images.hero.jpg" data-bind-alt="images.hero.alt" width="464" height="620" alt="A bright room at the villa, with two chairs by sheer curtains and glass doors opening onto a view of the sea" fetchpriority="high">
           </picture>
           <figcaption data-bind="images.hero.caption">Sea view from one of the villa's rooms</figcaption>
         </figure>
@@ -157,6 +160,68 @@
       </div>
     </section>
 
+    <!-- LONDON YOGA -->
+    <section class="section london" id="london-yoga" aria-labelledby="london-title">
+      <div class="container london-grid">
+        <figure class="london-figure">
+          <picture>
+            <source type="image/webp" srcset="assets/images/oval-studio.webp?v=202610200946" data-bind-srcset="londonYoga.image.webp">
+            <img src="assets/images/oval-studio.jpg?v=202610200946" data-bind-src="londonYoga.image.jpg" data-bind-alt="londonYoga.image.alt" width="900" height="1125" loading="lazy" decoding="async" alt="The empty yoga studio at Fison Fitness in Oval, London: mats, bolsters and blocks on a warm wooden floor under woven pendant lights">
+          </picture>
+          <figcaption data-bind="londonYoga.image.caption">The studio at Fison Fitness, Oval, London</figcaption>
+        </figure>
+        <div class="london-text">
+          <p class="eyebrow" data-bind="londonYoga.eyebrow">Monthly yoga · Oval</p>
+          <h2 id="london-title" data-bind="londonYoga.heading">Practise with Ricard in London</h2>
+          <p class="london-body" data-bind="londonYoga.body">A little space in your month to slow down, move and reconnect. Ricard's two-hour classes bring together grounding, breathwork, an opening mantra, vinyasa, and yin and meditation. Beginners and experienced practitioners are welcome.</p>
+          <p class="london-facts" data-bind="londonYoga.facts">Two hours · £20 per session · All levels</p>
+          <p class="next-class" id="next-class" data-next-class data-ends-at="2026-10-25T14:00:00+00:00" data-bind="londonYoga.nextClass.label">Next class: Sunday 25 October 2026 · 12–2pm</p>
+          <p class="london-venue"><span data-bind="londonYoga.venue">Fison Fitness · 33 Palfrey Place, Oval, London SW8 1PE</span><br><a class="venue-link" href="https://www.fisonfitness.co.uk/oval" data-bind-href="londonYoga.venueUrl" target="_blank" rel="noopener noreferrer"><span data-bind="londonYoga.venueLinkText">The studio / directions</span><span class="visually-hidden"> (opens in a new tab)</span></a></p>
+          <p class="service-actions">
+            <a class="button button-primary" href="https://www.instagram.com/ricardchillonpt/" data-bind-href="londonYoga.instagramUrl" target="_blank" rel="noopener noreferrer"><span data-bind="londonYoga.instagramCta">Ask Ricard about spaces</span><span class="visually-hidden"> (opens Instagram in a new tab)</span></a>
+            <a class="button button-outline" href="mailto:ricardchillon@gmail.com?subject=Monthly%20yoga%20in%20Oval" data-bind-href="londonYoga.emailHref"><span data-bind="londonYoga.emailCta">Email Ricard</span></a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERSONAL TRAINING -->
+    <section class="section section-sand pt" id="personal-training" aria-labelledby="pt-title">
+      <div class="container pt-grid">
+        <div class="pt-head">
+          <p class="eyebrow" data-bind="personalTraining.eyebrow">Personal training · London</p>
+          <h2 id="pt-title" data-bind="personalTraining.heading">One-to-one with Ricard</h2>
+        </div>
+        <div class="pt-body">
+          <p class="pt-text" data-bind="personalTraining.body">Training shaped around you, with Ricard's full attention. As a Level 3 personal trainer and yoga teacher, he brings together strength, mobility and mindful movement, at a pace that suits you. Get in touch to talk through what you'd like to work on, and to ask about details and availability.</p>
+          <p class="service-actions">
+            <a class="button button-primary" href="https://www.instagram.com/ricardchillonpt/" data-bind-href="personalTraining.instagramUrl" target="_blank" rel="noopener noreferrer"><span data-bind="personalTraining.instagramCta">Ask Ricard about training</span><span class="visually-hidden"> (opens Instagram in a new tab)</span></a>
+            <a class="button button-outline" href="mailto:ricardchillon@gmail.com?subject=Personal%20training%20enquiry" data-bind-href="personalTraining.emailHref"><span data-bind="personalTraining.emailCta">Email Ricard</span></a>
+          </p>
+        </div>
+        <!-- Verified client reviews only (personalTraining.testimonials); hidden while the list is empty -->
+        <div class="pt-testimonials" id="pt-testimonials">
+          <p class="pt-reviews-label" data-bind="personalTraining.testimonialsLabel">In their words</p>
+          <div class="review-grid" id="review-grid">
+            <!-- TESTIMONIALS:START -->
+            <figure class="review">
+              <blockquote><p>Every session is genuinely enjoyable, and his calm, focused approach sets him apart.</p></blockquote>
+              <figcaption><span class="review-name">Fergal</span><span class="review-source">Client review shared on Instagram</span><a class="review-link" href="https://www.instagram.com/ricardchillonpt/p/DCfWtpcNh7G/" target="_blank" rel="noopener noreferrer">Read on Instagram<span class="visually-hidden"> (opens in a new tab)</span></a></figcaption>
+            </figure>
+            <figure class="review">
+              <blockquote><p>I found Ricky’s positive mindset and tailored approach made all the difference for me.</p></blockquote>
+              <figcaption><span class="review-name">Russell</span><span class="review-source">Client review shared on Instagram</span><a class="review-link" href="https://www.instagram.com/ricardchillonpt/p/DPMULamDNnh/" target="_blank" rel="noopener noreferrer">Read on Instagram<span class="visually-hidden"> (opens in a new tab)</span></a></figcaption>
+            </figure>
+            <figure class="review">
+              <blockquote><p>He is a great motivator, friendly and always responsive and reliable.</p></blockquote>
+              <figcaption><span class="review-name">Matthew</span><span class="review-source">Client review shared on Instagram</span><a class="review-link" href="https://www.instagram.com/ricardchillonpt/p/DFuScuFtHAr/" target="_blank" rel="noopener noreferrer">Read on Instagram<span class="visually-hidden"> (opens in a new tab)</span></a></figcaption>
+            </figure>
+            <!-- TESTIMONIALS:END -->
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- VILLA -->
     <section class="section" id="villa" aria-labelledby="villa-title">
       <div class="container">
@@ -172,19 +237,19 @@
         <div class="gallery" id="gallery">
           <!-- GALLERY:START -->
           <figure class="g-item">
-            <picture><source type="image/webp" srcset="assets/images/villa-studio-sea.webp?v=202610200858"><img style="object-position: 50% 50%" src="assets/images/villa-studio-sea.jpg?v=202610200858" width="464" height="348" loading="lazy" alt="The yoga studio: a mat on a pale wooden floor in front of wide glass doors, with the sea beyond"></picture>
+            <picture><source type="image/webp" srcset="assets/images/villa-studio-sea.webp?v=202610200946"><img style="object-position: 50% 50%" src="assets/images/villa-studio-sea.jpg?v=202610200946" width="464" height="348" loading="lazy" alt="The yoga studio: a mat on a pale wooden floor in front of wide glass doors, with the sea beyond"></picture>
             <figcaption>The yoga studio, looking out to the sea</figcaption>
           </figure>
           <figure class="g-item">
-            <picture><source type="image/webp" srcset="assets/images/villa-living-sea.webp?v=202610200858"><img style="object-position: 50% 50%" src="assets/images/villa-living-sea.jpg?v=202610200858" width="464" height="348" loading="lazy" alt="Dining area with a long table and chairs in front of glass doors that open towards the sea"></picture>
+            <picture><source type="image/webp" srcset="assets/images/villa-living-sea.webp?v=202610200946"><img style="object-position: 50% 50%" src="assets/images/villa-living-sea.jpg?v=202610200946" width="464" height="348" loading="lazy" alt="Dining area with a long table and chairs in front of glass doors that open towards the sea"></picture>
             <figcaption>Dining and living space, with the sea beyond</figcaption>
           </figure>
           <figure class="g-item">
-            <picture><source type="image/webp" srcset="assets/images/villa-lounge.webp?v=202610200858"><img style="object-position: 50% 50%" src="assets/images/villa-lounge.jpg?v=202610200858" width="464" height="348" loading="lazy" alt="The communal lounge, with deep sofas and striped cushions beneath hanging plants"></picture>
+            <picture><source type="image/webp" srcset="assets/images/villa-lounge.webp?v=202610200946"><img style="object-position: 50% 50%" src="assets/images/villa-lounge.jpg?v=202610200946" width="464" height="348" loading="lazy" alt="The communal lounge, with deep sofas and striped cushions beneath hanging plants"></picture>
             <figcaption>The communal lounge</figcaption>
           </figure>
           <figure class="g-item">
-            <picture><source type="image/webp" srcset="assets/images/villa-bedroom.webp?v=202610200858"><img style="object-position: 50% 50%" src="assets/images/villa-bedroom.jpg?v=202610200858" width="576" height="432" loading="lazy" alt="A bedroom with white linen, a bedside lamp, a wooden headboard and a built-in wardrobe"></picture>
+            <picture><source type="image/webp" srcset="assets/images/villa-bedroom.webp?v=202610200946"><img style="object-position: 50% 50%" src="assets/images/villa-bedroom.jpg?v=202610200946" width="576" height="432" loading="lazy" alt="A bedroom with white linen, a bedside lamp, a wooden headboard and a built-in wardrobe"></picture>
             <figcaption>One of the bedrooms</figcaption>
           </figure>
           <!-- GALLERY:END -->
@@ -321,6 +386,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=202610200858"></script>
+  <script src="js/main.js?v=202610200946"></script>
 </body>
 </html>

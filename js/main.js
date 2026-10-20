@@ -166,6 +166,58 @@
     slot.hidden = false;
   }
 
+  /* London yoga: hide the next-class line once it has finished (londonYoga.nextClass.endsAt) */
+  function setupNextClass() {
+    each("[data-next-class]", function (el) {
+      var nc = (site.londonYoga && site.londonYoga.nextClass) || {};
+      var label = typeof nc.label === "string" ? nc.label.trim() : el.textContent.trim();
+      var ends = Date.parse(nc.endsAt || el.getAttribute("data-ends-at") || "");
+      el.hidden = !label || (!isNaN(ends) && Date.now() >= ends);
+    });
+  }
+
+  /* Personal training reviews: verified quotes only; nothing is shown while the list is empty */
+  function setupTestimonials() {
+    var box = document.getElementById("pt-testimonials");
+    var grid = document.getElementById("review-grid");
+    var pt = site.personalTraining;
+    if (!box || !grid || !pt || !Array.isArray(pt.testimonials)) return; // keep the static HTML
+    var list = pt.testimonials.filter(function (t) { return t && t.quote && t.name; });
+    grid.innerHTML = "";
+    list.forEach(function (t) {
+      var fig = document.createElement("figure");
+      fig.className = "review";
+      var bq = document.createElement("blockquote");
+      var p = document.createElement("p");
+      p.textContent = t.quote;
+      bq.appendChild(p);
+      fig.appendChild(bq);
+      var cap = document.createElement("figcaption");
+      var name = document.createElement("span");
+      name.className = "review-name";
+      name.textContent = t.name;
+      cap.appendChild(name);
+      var src = document.createElement("span");
+      src.className = "review-source";
+      src.textContent = pt.testimonialSourceLabel || "";
+      cap.appendChild(src);
+      if (t.sourceUrl) {
+        var a = document.createElement("a");
+        a.className = "review-link";
+        a.href = t.sourceUrl; a.target = "_blank"; a.rel = "noopener noreferrer";
+        a.textContent = pt.testimonialLinkText || "Read on Instagram";
+        var hid = document.createElement("span");
+        hid.className = "visually-hidden";
+        hid.textContent = " (opens in a new tab)";
+        a.appendChild(hid);
+        cap.appendChild(a);
+      }
+      fig.appendChild(cap);
+      grid.appendChild(fig);
+    });
+    box.hidden = list.length === 0;
+  }
+
   /* Mobile menu */
   function setupNav() {
     var toggle = document.getElementById("nav-toggle");
@@ -231,6 +283,8 @@
     optionalPhoto("chef-photo", site.images && site.images.chef);
   }
   setupEmail();
+  setupNextClass();
+  setupTestimonials();
   setupNav();
   setupForm();
 })();

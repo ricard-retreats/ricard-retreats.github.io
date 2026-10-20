@@ -276,6 +276,56 @@ figcaption { font-size: 0.875rem; color: var(--muted); margin-top: 0.7rem; paddi
   .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem 1.75rem; }
 }
 
+/* Nav: one "London" link on desktop, both services listed in the mobile menu */
+.nav-desktop-only { display: none; }
+@media (min-width: 900px) {
+  .nav-desktop-only { display: list-item; }
+  .nav-mobile-only { display: none; }
+}
+
+/* London yoga: compact image + text */
+.london-grid { display: grid; gap: 2.25rem; align-items: center; }
+.london-figure { margin: 0; width: 100%; max-width: 380px; order: 2; }
+.london-text { order: 1; }
+.london-figure img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); }
+.london-text { max-width: 36rem; }
+.london-text h2 { margin-bottom: 1.4rem; }
+.london-body { color: var(--ink); }
+.london-facts { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; color: var(--charcoal); font-variant-numeric: lining-nums; padding: 0.8rem 0; border-top: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule); margin: 1.5rem 0 1.25rem; }
+.next-class { text-wrap: balance; display: inline-block; margin: 0 0 1.25rem; padding: 0.55rem 0.95rem; border: 1px solid var(--sea); border-left-width: 4px; border-radius: 2px; background: rgba(52, 90, 72, 0.06); color: var(--charcoal); font-weight: 600; font-variant-numeric: lining-nums; }
+.london-venue { text-wrap: balance; color: var(--muted); margin-bottom: 1.75rem; }
+.venue-link { font-size: 0.95rem; }
+.service-actions { margin: 0; display: flex; flex-wrap: wrap; gap: 0.9rem 1rem; }
+.button-outline { background: transparent; color: var(--sea); border-color: var(--sea); }
+.button-outline:hover { background: var(--sea); color: var(--ivory); }
+@media (min-width: 900px) {
+  .london-grid { grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: clamp(3rem, 6vw, 5.5rem); }
+  .london-figure { order: 0; }
+  .london-text { order: 0; }
+}
+
+/* Personal training: text-led */
+.pt-grid { display: grid; gap: 1.5rem 4rem; }
+.pt-body { max-width: 36rem; }
+.pt-text { font-family: var(--serif); font-variant-numeric: lining-nums; font-size: clamp(1.3rem, 2vw, 1.5rem); line-height: 1.45; color: var(--charcoal); padding-top: 1.4rem; border-top: 1px solid var(--rule-strong); margin-bottom: 1.75rem; }
+.pt-testimonials { margin-top: clamp(2.5rem, 5vw, 3.5rem); padding-top: 1.75rem; border-top: 1px solid var(--rule); }
+.pt-reviews-label { font-family: var(--serif); font-style: italic; font-size: 1.25rem; color: var(--sea); margin: 0 0 1.25rem; }
+.review-grid { display: grid; gap: 1.25rem; }
+.review { margin: 0; display: flex; flex-direction: column; padding: 1.5rem 1.5rem 1.35rem; background: var(--ivory); border: 1px solid var(--rule); border-radius: var(--radius); }
+.review blockquote { margin: 0 0 1.25rem; flex: 1; }
+.review blockquote p { margin: 0; font-family: var(--serif); font-size: 1.3rem; line-height: 1.4; color: var(--charcoal); }
+.review blockquote p::before { content: "\2018"; }
+.review blockquote p::after { content: "\2019"; }
+.review figcaption { margin: 0; padding: 0.9rem 0 0; border-left: 0; border-top: 1px solid var(--rule); display: flex; flex-direction: column; gap: 0.15rem; }
+.review-name { font-weight: 600; color: var(--charcoal); font-size: 1rem; }
+.review-source { font-size: 0.85rem; color: var(--muted); }
+.review-link { font-size: 0.85rem; margin-top: 0.35rem; align-self: flex-start; }
+@media (min-width: 900px) {
+  .pt-testimonials { grid-column: 1 / -1; }
+  .review-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+}
+@media (min-width: 900px) { .pt-grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); } }
+
 /* Food */
 .food-grid { display: grid; gap: 1.5rem 4rem; }
 .food-body { max-width: 36rem; }
