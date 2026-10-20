@@ -300,10 +300,10 @@ figcaption { font-size: 0.875rem; color: var(--muted); margin-top: 0.7rem; paddi
 .villa-text h2 { margin-bottom: 1.5rem; }
 .villa-lede { font-family: var(--serif); font-size: 1.45rem; line-height: 1.4; color: var(--charcoal); }
 /* Aligned gallery: equal columns, equal gaps, one aspect ratio, captions in the same place.
-   3 columns on desktop (each image under its 608px native width), 2 on tablet, 1 on mobile. */
+   3 columns on desktop, 2 on tablet, 1 on mobile; 4:3 professional photos with 800px/1600px srcset. */
 .gallery { display: grid; grid-template-columns: 1fr; gap: 2rem 1.5rem; }
 .gallery figure { margin: 0; }
-.gallery img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 50%; border-radius: var(--radius); }
+.gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 50%; border-radius: var(--radius); }
 @media (min-width: 640px) {
   .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem 1.75rem; }
 }

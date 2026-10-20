@@ -102,16 +102,25 @@
   }
 
   /* Images */
+  var GALLERY_SIZES = "(min-width: 900px) 30vw, (min-width: 640px) 46vw, 92vw";
+  function srcsetOf(item, smallKey, bigKey) {
+    if (item[smallKey] && item.width) return v(item[smallKey]) + " 800w, " + v(item[bigKey]) + " " + item.width + "w";
+    return v(item[bigKey]);
+  }
+
   function picture(item, opts) {
     var pic = document.createElement("picture");
+    var responsive = !!(item.jpg800 || item.webp800);
     if (item.webp) {
       var s = document.createElement("source");
       s.type = "image/webp";
-      s.srcset = v(item.webp);
+      s.srcset = srcsetOf(item, "webp800", "webp");
+      if (responsive) s.sizes = GALLERY_SIZES;
       pic.appendChild(s);
     }
     var img = document.createElement("img");
     img.src = v(item.jpg || item.src);
+    if (responsive) { img.srcset = srcsetOf(item, "jpg800", "jpg"); img.sizes = GALLERY_SIZES; }
     img.alt = item.alt || "";
     if (item.width) img.width = item.width;
     if (item.height) img.height = item.height;

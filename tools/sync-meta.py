@@ -105,14 +105,28 @@ def meta_block(cfg):
     return "\n".join("  " + r for r in rows)
 
 
+GALLERY_SIZES = "(min-width: 900px) 30vw, (min-width: 640px) 46vw, 92vw"
+
+
+def srcset(item, small_key, big_key):
+    big = item.get(big_key)
+    small = item.get(small_key)
+    if small and item.get("width"):
+        return f"{ver(small)} 800w, {ver(big)} {item['width']}w"
+    return ver(big)
+
+
 def picture(item, lazy=True):
     w = f' width="{item["width"]}"' if item.get("width") else ""
     h = f' height="{item["height"]}"' if item.get("height") else ""
+    responsive = bool(item.get("jpg800") or item.get("webp800"))
+    sizes = f' sizes="{GALLERY_SIZES}"' if responsive else ""
     src = ""
     if item.get("webp"):
-        src = f'<source type="image/webp" srcset="{esc(ver(item["webp"]))}">'
+        src = f'<source type="image/webp" srcset="{esc(srcset(item, "webp800", "webp"))}"{sizes}>'
+    img_srcset = f' srcset="{esc(srcset(item, "jpg800", "jpg"))}"{sizes}' if responsive else ""
     load = ' loading="lazy"' if lazy else ""
-    return (f'<picture>{src}<img src="{esc(ver(item.get("jpg") or item.get("src")))}"{w}{h}{load} '
+    return (f'<picture>{src}<img src="{esc(ver(item.get("jpg") or item.get("src")))}"{img_srcset}{w}{h}{load} '
             f'alt="{esc(item.get("alt", ""))}"></picture>')
 
 

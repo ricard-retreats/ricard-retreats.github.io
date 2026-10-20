@@ -6,7 +6,7 @@
 // applies these values on page load.
 window.SITE = {
   // Cache-busting version. Bump with:  python3 tools/sync-meta.py --bump
-  "assetVersion": "202610201333",
+  "assetVersion": "202610201343",
   "brandName": "Ricard Retreats",
   "hostName": "Ricard Chillon",
   "hostTitle": "Personal trainer and yoga teacher",
@@ -172,15 +172,16 @@ window.SITE = {
       "alt": "Aerial view of a white villa with a turquoise pool and palm trees, with the sea beyond",
       "caption": "The villa and pool from above, by the sea"
     },
-    // Villa gallery: an aligned grid (3 columns on desktop, 2 on tablet, 1 on mobile), every image 4:5.
-    // Stills are native-resolution frames from Ricard's villa reel. "position" is the optional focal point.
+    // Villa gallery: an aligned grid (3 columns on desktop, 2 on tablet, 1 on mobile), every image 4:3.
+    // Professional photos of the villa; each has a large (up to 1600px) and an 800px version for srcset.
+    // "position" is the optional CSS object-position focal point.
     "gallery": [
-      {"webp": "assets/images/villa-bedroom-sea.webp", "jpg": "assets/images/villa-bedroom-sea.jpg", "width": 608, "height": 760, "alt": "A bedroom with a small table and two chairs by glass doors, with the sea beyond", "caption": "A bedroom with a sea view", "position": "50% 50%"},
-      {"webp": "assets/images/villa-living-room.webp", "jpg": "assets/images/villa-living-room.jpg", "width": 608, "height": 760, "alt": "A white living room with sofas, patterned cushions and a wooden coffee table, with arched doorways behind", "caption": "The living room", "position": "50% 50%"},
-      {"webp": "assets/images/villa-lounge-plants.webp", "jpg": "assets/images/villa-lounge-plants.jpg", "width": 608, "height": 760, "alt": "A bright lounge with white sofas beneath hanging plants and woven lamps", "caption": "The lounge, full of plants and light", "position": "50% 50%"},
-      {"webp": "assets/images/villa-pool-above.webp", "jpg": "assets/images/villa-pool-above.jpg", "width": 608, "height": 760, "alt": "The pool and courtyard seen from above, with loungers and palms around it", "caption": "The pool courtyard from above", "position": "50% 50%"},
-      {"webp": "assets/images/villa-pool-palms.webp", "jpg": "assets/images/villa-pool-palms.jpg", "width": 608, "height": 760, "alt": "The pool beside a sandy terrace with palm trees and a hammock", "caption": "The pool and palm-shaded terrace", "position": "50% 50%"},
-      {"webp": "assets/images/coast-sea.webp", "jpg": "assets/images/coast-sea.jpg", "width": 608, "height": 760, "alt": "A sandy volcanic headland beside the blue sea", "caption": "Volcanic coastline and sea", "position": "50% 50%"}
+      {"webp": "assets/images/villa-lounge-sea.webp", "jpg": "assets/images/villa-lounge-sea.jpg", "webp800": "assets/images/villa-lounge-sea-800.webp", "jpg800": "assets/images/villa-lounge-sea-800.jpg", "width": 1600, "height": 1200, "alt": "A bright open-plan lounge with grey sofas, cushions and plants, and the sea through the windows beyond", "caption": "The lounge, with sea views", "position": "50% 50%"},
+      {"webp": "assets/images/villa-bedroom-bath.webp", "jpg": "assets/images/villa-bedroom-bath.jpg", "webp800": "assets/images/villa-bedroom-bath-800.webp", "jpg800": "assets/images/villa-bedroom-bath-800.jpg", "width": 1600, "height": 1200, "alt": "A bedroom with twin beds, a freestanding bath and large windows looking out to the sea", "caption": "A bedroom with a bath and a sea view", "position": "50% 50%"},
+      {"webp": "assets/images/villa-pool-beach.webp", "jpg": "assets/images/villa-pool-beach.jpg", "webp800": "assets/images/villa-pool-beach-800.webp", "jpg800": "assets/images/villa-pool-beach-800.jpg", "width": 888, "height": 666, "alt": "A white villa behind a turquoise pool, with palm trees, a thatched parasol and sun loungers on the sand", "caption": "The pool and garden", "position": "50% 50%"},
+      {"webp": "assets/images/villa-roof-terrace.webp", "jpg": "assets/images/villa-roof-terrace.jpg", "webp800": "assets/images/villa-roof-terrace-800.webp", "jpg800": "assets/images/villa-roof-terrace-800.jpg", "width": 888, "height": 666, "alt": "A roof terrace with sun loungers behind a glass balustrade, facing the blue sea", "caption": "The roof terrace, facing the sea", "position": "50% 50%"},
+      {"webp": "assets/images/villa-patio-hammock.webp", "jpg": "assets/images/villa-patio-hammock.jpg", "webp800": "assets/images/villa-patio-hammock-800.webp", "jpg800": "assets/images/villa-patio-hammock-800.jpg", "width": 1600, "height": 1200, "alt": "A shaded patio with a white hammock, a lava-stone wall, plants and palm trees", "caption": "A shaded patio with a hammock", "position": "50% 50%"},
+      {"webp": "assets/images/villa-arched-hall.webp", "jpg": "assets/images/villa-arched-hall.jpg", "webp800": "assets/images/villa-arched-hall-800.webp", "jpg800": "assets/images/villa-arched-hall-800.jpg", "width": 1600, "height": 1200, "alt": "A bright hallway with arched doorways, a wooden console and a vase of flowers", "caption": "Arched hallway and shared spaces", "position": "50% 50%"}
     ],
     // Villa tour video (Ricard's reel, audio removed, end card trimmed). Muted; plays when scrolled into view.
     "video": {
