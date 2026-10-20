@@ -1,0 +1,236 @@
+/* Ricard Retreats: applies site-config.js to the page, builds the gallery,
+   runs the mobile menu and the (optional) enquiry form. No dependencies. */
+(function () {
+  "use strict";
+
+  var site = window.SITE || {};
+  var pageVersion = document.documentElement.getAttribute("data-asset-version") || "";
+  // Only let the config drive images if it is the same version as this HTML.
+  // A stale cached config can then never put old photos back.
+  var configFresh = !!site.assetVersion && site.assetVersion === pageVersion;
+
+  function v(url) {
+    if (!url || /^(https?:|data:|mailto:)/.test(url) || !site.assetVersion) return url;
+    return url.replace(/[?#].*$/, "") + "?v=" + encodeURIComponent(site.assetVersion);
+  }
+
+  function get(path) {
+    return path.split(".").reduce(function (acc, key) {
+      return acc != null && acc[key] != null ? acc[key] : null;
+    }, site);
+  }
+
+  function each(selector, fn) {
+    Array.prototype.forEach.call(document.querySelectorAll(selector), fn);
+  }
+
+  /* Text, links, attributes */
+  function applyBindings() {
+    each("[data-bind]", function (el) {
+      var v = get(el.getAttribute("data-bind"));
+      if (typeof v === "string") el.textContent = v;
+    });
+    each("[data-bind-href]", function (el) {
+      var v = get(el.getAttribute("data-bind-href"));
+      if (v) el.setAttribute("href", v);
+    });
+    each("[data-bind-aria]", function (el) {
+      var v = get(el.getAttribute("data-bind-aria"));
+      if (v) el.setAttribute("aria-label", v);
+    });
+    if (configFresh) {
+      each("[data-bind-src]", function (el) {
+        var val = get(el.getAttribute("data-bind-src"));
+        if (val) el.setAttribute("src", v(val));
+      });
+      each("[data-bind-srcset]", function (el) {
+        var val = get(el.getAttribute("data-bind-srcset"));
+        if (val) el.setAttribute("srcset", v(val));
+      });
+    }
+    each("[data-bind-alt]", function (el) {
+      var v = get(el.getAttribute("data-bind-alt"));
+      if (v != null) el.setAttribute("alt", v);
+    });
+
+    var c = site.colours || {};
+    var root = document.documentElement.style;
+    if (c.ivory) root.setProperty("--ivory", c.ivory);
+    if (c.seaGreen) root.setProperty("--sea", c.seaGreen);
+    if (c.charcoal) root.setProperty("--charcoal", c.charcoal);
+    if (c.sand) root.setProperty("--sand", c.sand);
+    if (c.terracotta) root.setProperty("--terracotta", c.terracotta);
+    if (c.terracottaText) root.setProperty("--terracotta-text", c.terracottaText);
+
+    var year = document.getElementById("year");
+    if (year) year.textContent = String(new Date().getFullYear());
+  }
+
+  /* Title and share metadata (static copies are written by tools/sync-meta.py) */
+  function setMeta(attr, key, value) {
+    if (!value) return;
+    var el = document.head.querySelector("meta[" + attr + '="' + key + '"]');
+    if (!el) {
+      el = document.createElement("meta");
+      el.setAttribute(attr, key);
+      document.head.appendChild(el);
+    }
+    el.setAttribute("content", value);
+  }
+
+  function applyMeta() {
+    var m = site.meta || {};
+    if (m.title) document.title = m.title;
+    var base = m.siteUrl || "";
+    var img = m.ogImage ? (/^https?:/.test(m.ogImage) ? m.ogImage : base + m.ogImage) : "";
+    setMeta("name", "description", m.description);
+    setMeta("property", "og:type", "website");
+    setMeta("property", "og:site_name", site.brandName);
+    setMeta("property", "og:title", m.ogTitle || m.title);
+    setMeta("property", "og:description", m.ogDescription || m.description);
+    setMeta("property", "og:url", base);
+    setMeta("property", "og:image", img);
+    setMeta("name", "twitter:card", "summary_large_image");
+    setMeta("name", "twitter:title", m.ogTitle || m.title);
+    setMeta("name", "twitter:description", m.ogDescription || m.description);
+    setMeta("name", "twitter:image", img);
+    if (m.noIndex !== false) setMeta("name", "robots", "noindex, nofollow");
+  }
+
+  /* Images */
+  function picture(item, opts) {
+    var pic = document.createElement("picture");
+    if (item.webp) {
+      var s = document.createElement("source");
+      s.type = "image/webp";
+      s.srcset = v(item.webp);
+      pic.appendChild(s);
+    }
+    var img = document.createElement("img");
+    img.src = v(item.jpg || item.src);
+    img.alt = item.alt || "";
+    if (item.width) img.width = item.width;
+    if (item.height) img.height = item.height;
+    if (!opts || !opts.eager) img.loading = "lazy";
+    img.decoding = "async";
+    pic.appendChild(img);
+    return pic;
+  }
+
+  function figure(item) {
+    var fig = document.createElement("figure");
+    fig.className = "g-item";
+    var pic = picture(item);
+    if (item.position) pic.querySelector("img").style.objectPosition = item.position;
+    fig.appendChild(pic);
+    if (item.caption) {
+      var cap = document.createElement("figcaption");
+      cap.textContent = item.caption;
+      fig.appendChild(cap);
+    }
+    return fig;
+  }
+
+  function buildGallery() {
+    var list = site.images && site.images.gallery;
+    var gallery = document.getElementById("gallery");
+    // The static gallery in index.html is the baseline; only rebuild from a matching config.
+    if (!configFresh || !list || !list.length || !gallery) return;
+    gallery.innerHTML = "";
+    list.forEach(function (item) { gallery.appendChild(figure(item)); });
+  }
+
+  /* Optional email: contact.email + contact.emailSubject */
+  function mailtoHref() {
+    var c = site.contact || {};
+    var email = (c.email || "").trim();
+    if (!email) return "";
+    return "mailto:" + email + (c.emailSubject ? "?subject=" + encodeURIComponent(c.emailSubject) : "");
+  }
+
+  function setupEmail() {
+    var href = mailtoHref();
+    each("[data-email-only]", function (el) { el.hidden = !href; });
+    if (href) each("[data-email-link]", function (el) { el.setAttribute("href", href); });
+  }
+
+  function optionalPhoto(id, item) {
+    var slot = document.getElementById(id);
+    if (!slot || !item || !(item.jpg || item.src)) return; // stays hidden: no empty boxes
+    slot.appendChild(picture(item));
+    if (item.caption) {
+      var cap = document.createElement("figcaption");
+      cap.textContent = item.caption;
+      slot.appendChild(cap);
+    }
+    slot.hidden = false;
+  }
+
+  /* Mobile menu */
+  function setupNav() {
+    var toggle = document.getElementById("nav-toggle");
+    var nav = document.getElementById("site-nav");
+    if (!toggle || !nav) return;
+    function close() {
+      toggle.setAttribute("aria-expanded", "false");
+      nav.classList.remove("is-open");
+    }
+    toggle.addEventListener("click", function () {
+      var open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!open));
+      nav.classList.toggle("is-open", !open);
+    });
+    each("#site-nav a", function (a) { a.addEventListener("click", close); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("is-open")) { close(); toggle.focus(); }
+    });
+  }
+
+  /* Enquiry form: only shown once contact.formEndpoint is set */
+  function setupForm() {
+    var form = document.getElementById("interest-form");
+    var status = document.getElementById("form-status");
+    var submit = document.getElementById("form-submit");
+    var endpoint = ((site.contact && site.contact.formEndpoint) || "").trim();
+    if (!form) return;
+    if (!endpoint) { form.hidden = true; return; }
+    form.hidden = false;
+
+    function show(type, msg) {
+      status.className = "form-status " + type;
+      status.textContent = msg;
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      show("", "");
+      if (!form.reportValidity()) return;
+      submit.disabled = true;
+      fetch(endpoint, {
+        method: (site.contact && site.contact.formMethod) || "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          show("success", "Thank you, your message is on its way to Ricard.");
+          form.reset();
+        })
+        .catch(function () {
+          show("error", "Sorry, your message couldn't be sent just now. Please try again, or message Ricard on Instagram.");
+        })
+        .then(function () { submit.disabled = false; });
+    });
+  }
+
+  applyBindings();
+  applyMeta();
+  buildGallery();
+  if (configFresh) {
+    optionalPhoto("host-photo", site.images && site.images.host);
+    optionalPhoto("chef-photo", site.images && site.images.chef);
+  }
+  setupEmail();
+  setupNav();
+  setupForm();
+})();

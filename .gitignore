@@ -1,0 +1,5 @@
+assets/raw/
+assets/images/_frame_*
+assets/images/_still_*
+.DS_Store
+.netlify/
