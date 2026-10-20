@@ -218,24 +218,59 @@
     box.hidden = list.length === 0;
   }
 
-  /* Mobile menu */
+  /* Navigation: mobile menu toggle + "Retreats" submenu (click/tap, not hover) */
   function setupNav() {
     var toggle = document.getElementById("nav-toggle");
     var nav = document.getElementById("site-nav");
+    var subBtn = document.getElementById("retreats-toggle");
+    var sub = document.getElementById("retreats-menu");
     if (!toggle || !nav) return;
-    function close() {
+    var desktop = window.matchMedia("(min-width: 900px)");
+
+    function setSub(open) {
+      if (!subBtn || !sub) return;
+      subBtn.setAttribute("aria-expanded", String(open));
+      sub.hidden = !open;
+    }
+    function subOpen() { return !!sub && !sub.hidden; }
+    function menuOpen() { return nav.classList.contains("is-open"); }
+    function closeMenu() {
       toggle.setAttribute("aria-expanded", "false");
       nav.classList.remove("is-open");
+      setSub(false);
     }
+
     toggle.addEventListener("click", function () {
-      var open = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!open));
-      nav.classList.toggle("is-open", !open);
+      var open = !menuOpen();
+      toggle.setAttribute("aria-expanded", String(open));
+      nav.classList.toggle("is-open", open);
+      if (!open) setSub(false);
+      else nav.scrollTop = 0;
     });
-    each("#site-nav a", function (a) { a.addEventListener("click", close); });
+    if (subBtn) subBtn.addEventListener("click", function () { setSub(!subOpen()); });
+
+    // Choosing any link closes the submenu and the mobile menu
+    each("#site-nav a", function (a) { a.addEventListener("click", closeMenu); });
+
+    // Desktop: clicking outside the dropdown closes it
+    document.addEventListener("click", function (e) {
+      if (subOpen() && desktop.matches && !e.target.closest(".nav-has-sub")) setSub(false);
+    });
+
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && nav.classList.contains("is-open")) { close(); toggle.focus(); }
+      if (e.key !== "Escape") return;
+      if (desktop.matches) {
+        if (subOpen()) { setSub(false); subBtn.focus(); }
+      } else if (menuOpen()) {
+        closeMenu(); toggle.focus();
+      }
     });
+
+    // Switching between layouts starts from a clean, closed state
+    var wasDesktop = desktop.matches;
+    var onChange = function () { if (desktop.matches !== wasDesktop) { wasDesktop = desktop.matches; closeMenu(); } };
+    if (desktop.addEventListener) desktop.addEventListener("change", onChange);
+    else if (desktop.addListener) desktop.addListener(onChange);
   }
 
   /* Enquiry form: only shown once contact.formEndpoint is set */

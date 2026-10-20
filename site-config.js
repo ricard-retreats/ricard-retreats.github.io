@@ -6,7 +6,7 @@
 // applies these values on page load.
 window.SITE = {
   // Cache-busting version. Bump with:  python3 tools/sync-meta.py --bump
-  "assetVersion": "202610200946",
+  "assetVersion": "202610201000",
   "brandName": "Ricard Retreats",
   "hostName": "Ricard Chillon",
   "hostTitle": "Personal trainer and yoga teacher",
@@ -25,6 +25,22 @@ window.SITE = {
   "eyebrow": "Lanzarote · 5–10 November 2026",
   "heroLede": "Five nights of yoga, shared meals and sea air at a villa in northern Lanzarote, hosted by Ricard Chillon.",
   "welcome": "A few days to step away from the everyday: to move, to rest, to eat well and to share the table with good company. Come as you are, and take what you need from each day.",
+
+  // Main navigation labels (same five categories on desktop and mobile; Retreats opens a submenu).
+  "nav": {
+    "retreats": "Retreats",
+    "lanzaroteGroup": "Lanzarote · 5–10 Nov 2026",
+    "lanzarote": "Lanzarote retreat",
+    "experience": "The experience",
+    "villa": "The villa",
+    "food": "Food",
+    "details": "Dates & details",
+    "crete": "Crete Adventure · 2027",
+    "yoga": "Yoga Classes",
+    "training": "Personal Training",
+    "about": "About Ricard",
+    "contact": "Contact"
+  },
 
   "meta": {
     "title": "Ricard Retreats · Yoga retreat in Lanzarote, 5–10 November 2026",
@@ -59,14 +75,16 @@ window.SITE = {
   },
 
   "contact": {
-    "heading": "Ask Ricard about joining",
-    "intro": "Thinking of joining us? Message Ricard to ask about availability, rooms or anything you'd like to know.",
+    "heading": "Get in touch with Ricard",
+    "intro": "Interested in a retreat, a yoga class or one-to-one training? Contact Ricard for details and availability.",
     "ctaLabel": "Message Ricard on Instagram",
     "instagramUrl": "https://www.instagram.com/ricardchillonpt/",
     "instagramHandle": "@ricardchillonpt",
     // Email shown as an "Email Ricard" button with the address written out. Leave "" to hide it.
     "email": "ricardchillon@gmail.com",
-    "emailSubject": "Lanzarote retreat enquiry",
+    "emailSubject": "Website enquiry",
+    // The Lanzarote FAQ ("How do I ask about joining?") keeps its own retreat subject.
+    "retreatEmailHref": "mailto:ricardchillon@gmail.com?subject=Lanzarote%20retreat%20enquiry",
     "emailLabel": "Email Ricard",
     // Leave formEndpoint empty until a real form service (e.g. a Formspree URL) is set up.
     // While it is empty, the enquiry form stays hidden and only the Instagram button shows.
