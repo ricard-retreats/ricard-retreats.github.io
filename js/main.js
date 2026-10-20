@@ -43,6 +43,10 @@
         var val = get(el.getAttribute("data-bind-src"));
         if (val) el.setAttribute("src", v(val));
       });
+      each("[data-bind-poster]", function (el) {
+        var val = get(el.getAttribute("data-bind-poster"));
+        if (val) el.setAttribute("poster", v(val));
+      });
       each("[data-bind-srcset]", function (el) {
         var val = get(el.getAttribute("data-bind-srcset"));
         if (val) el.setAttribute("srcset", v(val));
@@ -218,6 +222,27 @@
     box.hidden = list.length === 0;
   }
 
+  /* Villa tour video: muted, controls always shown; plays only while in view, never with reduced motion */
+  function setupVideo() {
+    var vid = document.getElementById("villa-video");
+    if (!vid) return;
+    vid.muted = true;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || !("IntersectionObserver" in window)) return;
+    var userPaused = false, auto = false;
+    vid.addEventListener("pause", function () { if (!auto) userPaused = true; auto = false; });
+    vid.addEventListener("play", function () { userPaused = false; });
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+          if (!userPaused && vid.paused) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); }
+        } else if (!vid.paused) {
+          auto = true; vid.pause();
+        }
+      });
+    }, { threshold: [0, 0.5] }).observe(vid);
+  }
+
   /* Navigation: mobile menu toggle + "Retreats" submenu (click/tap, not hover) */
   function setupNav() {
     var toggle = document.getElementById("nav-toggle");
@@ -319,6 +344,7 @@
   }
   setupEmail();
   setupNextClass();
+  setupVideo();
   setupTestimonials();
   setupNav();
   setupForm();

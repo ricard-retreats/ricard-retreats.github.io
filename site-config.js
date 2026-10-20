@@ -6,7 +6,7 @@
 // applies these values on page load.
 window.SITE = {
   // Cache-busting version. Bump with:  python3 tools/sync-meta.py --bump
-  "assetVersion": "202610201004",
+  "assetVersion": "202610201333",
   "brandName": "Ricard Retreats",
   "hostName": "Ricard Chillon",
   "hostTitle": "Personal trainer and yoga teacher",
@@ -165,49 +165,33 @@ window.SITE = {
 
   "images": {
     "hero": {
-      "webp": "assets/images/hero-room-sea.webp",
-      "jpg": "assets/images/hero-room-sea.jpg",
-      "width": 464,
-      "height": 620,
-      "alt": "A bright room at the villa, with two chairs by sheer curtains and glass doors opening onto a view of the sea",
-      "caption": "Sea view from one of the villa's rooms"
+      "webp": "assets/images/hero-aerial-sea.webp",
+      "jpg": "assets/images/hero-aerial-sea.jpg",
+      "width": 570,
+      "height": 762,
+      "alt": "Aerial view of a white villa with a turquoise pool and palm trees, with the sea beyond",
+      "caption": "The villa and pool from above, by the sea"
     },
-    // Villa gallery: shown as an aligned 2x2 grid (one column on mobile), every image cropped to 4:3.
-    // "position" is the optional CSS object-position focal point, e.g. "50% 40%".
+    // Villa gallery: an aligned grid (3 columns on desktop, 2 on tablet, 1 on mobile), every image 4:5.
+    // Stills are native-resolution frames from Ricard's villa reel. "position" is the optional focal point.
     "gallery": [
-      {
-        "webp": "assets/images/villa-studio-sea.webp",
-        "jpg": "assets/images/villa-studio-sea.jpg",
-        "width": 464, "height": 348,
-        "alt": "The yoga studio: a mat on a pale wooden floor in front of wide glass doors, with the sea beyond",
-        "caption": "The yoga studio, looking out to the sea",
-        "position": "50% 50%"
-      },
-      {
-        "webp": "assets/images/villa-living-sea.webp",
-        "jpg": "assets/images/villa-living-sea.jpg",
-        "width": 464, "height": 348,
-        "alt": "Dining area with a long table and chairs in front of glass doors that open towards the sea",
-        "caption": "Dining and living space, with the sea beyond",
-        "position": "50% 50%"
-      },
-      {
-        "webp": "assets/images/villa-lounge.webp",
-        "jpg": "assets/images/villa-lounge.jpg",
-        "width": 464, "height": 348,
-        "alt": "The communal lounge, with deep sofas and striped cushions beneath hanging plants",
-        "caption": "The communal lounge",
-        "position": "50% 50%"
-      },
-      {
-        "webp": "assets/images/villa-bedroom.webp",
-        "jpg": "assets/images/villa-bedroom.jpg",
-        "width": 576, "height": 432,
-        "alt": "A bedroom with white linen, a bedside lamp, a wooden headboard and a built-in wardrobe",
-        "caption": "One of the bedrooms",
-        "position": "50% 50%"
-      }
+      {"webp": "assets/images/villa-bedroom-sea.webp", "jpg": "assets/images/villa-bedroom-sea.jpg", "width": 608, "height": 760, "alt": "A bedroom with a small table and two chairs by glass doors, with the sea beyond", "caption": "A bedroom with a sea view", "position": "50% 50%"},
+      {"webp": "assets/images/villa-living-room.webp", "jpg": "assets/images/villa-living-room.jpg", "width": 608, "height": 760, "alt": "A white living room with sofas, patterned cushions and a wooden coffee table, with arched doorways behind", "caption": "The living room", "position": "50% 50%"},
+      {"webp": "assets/images/villa-lounge-plants.webp", "jpg": "assets/images/villa-lounge-plants.jpg", "width": 608, "height": 760, "alt": "A bright lounge with white sofas beneath hanging plants and woven lamps", "caption": "The lounge, full of plants and light", "position": "50% 50%"},
+      {"webp": "assets/images/villa-pool-above.webp", "jpg": "assets/images/villa-pool-above.jpg", "width": 608, "height": 760, "alt": "The pool and courtyard seen from above, with loungers and palms around it", "caption": "The pool courtyard from above", "position": "50% 50%"},
+      {"webp": "assets/images/villa-pool-palms.webp", "jpg": "assets/images/villa-pool-palms.jpg", "width": 608, "height": 760, "alt": "The pool beside a sandy terrace with palm trees and a hammock", "caption": "The pool and palm-shaded terrace", "position": "50% 50%"},
+      {"webp": "assets/images/coast-sea.webp", "jpg": "assets/images/coast-sea.jpg", "width": 608, "height": 760, "alt": "A sandy volcanic headland beside the blue sea", "caption": "Volcanic coastline and sea", "position": "50% 50%"}
     ],
+    // Villa tour video (Ricard's reel, audio removed, end card trimmed). Muted; plays when scrolled into view.
+    "video": {
+      "mp4": "assets/video/villa-tour.mp4",
+      "poster": "assets/video/villa-tour-poster.jpg",
+      "width": 608,
+      "height": 1080,
+      "label": "A short tour of the villa, from the sea view to the pool.",
+      "linkText": "Watch the villa tour on Instagram",
+      "linkUrl": "https://www.instagram.com/reel/DT3p8WjDN4t/"
+    },
     // Optional: add a real, approved photo later, e.g. {"jpg": "assets/images/ricard.jpg", "alt": "Ricard Chillon"}.
     // Leave as null and the section stays text-led (no empty photo box is shown).
     "host": null,

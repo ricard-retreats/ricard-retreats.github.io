@@ -167,7 +167,7 @@ def main():
     s = re.sub(r'(<html\b[^>]*\sdata-asset-version=")[^"]*"', lambda m: m.group(1) + esc(VERSION) + '"', s, count=1)
     def vref(mo):
         return mo.group(1) + esc(ver(mo.group(2))) + '"'
-    s = re.sub(r'(\s(?:href|src|srcset)=")((?!https?:|mailto:|#|data:)[^"]+\.(?:css|js|svg|jpg|jpeg|png|webp)(?:\?[^"]*)?)"', vref, s)
+    s = re.sub(r'(\s(?:href|src|srcset|poster)=")((?!https?:|mailto:|#|data:)[^"]+\.(?:css|js|svg|jpg|jpeg|png|webp|mp4)(?:\?[^"]*)?)"', vref, s)
 
     s = replace_block(s, "META", meta_block(cfg))
 
@@ -217,14 +217,14 @@ def main():
                s)
 
     for attr, target in (("href", "href"), ("aria", "aria-label"), ("src", "src"),
-                         ("srcset", "srcset"), ("alt", "alt")):
+                         ("srcset", "srcset"), ("alt", "alt"), ("poster", "poster")):
         def attr_sub(mo, target=target):
             tag = mo.group(0)
             val = get(cfg, mo.group(1))
             if not isinstance(val, str):
                 missing.append(mo.group(1))
                 return tag
-            if target in ("src", "srcset"):
+            if target in ("src", "srcset", "poster"):
                 val = ver(val)
             new = re.sub(r'\s%s="[^"]*"' % re.escape(target), f' {target}="{esc(val)}"', tag, count=1)
             if new == tag and f' {target}="' not in tag:

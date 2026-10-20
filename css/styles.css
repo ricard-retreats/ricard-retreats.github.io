@@ -231,7 +231,7 @@ p { margin: 0 0 1.1em; }
 .facts li + li::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--terracotta); margin: 0 0.9rem; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 1.75rem; }
 .hero-figure { margin: 0; justify-self: center; width: 100%; max-width: 440px; }
-.hero-figure img { width: 100%; aspect-ratio: 464 / 620; object-fit: cover; border-radius: var(--radius); }
+.hero-figure img { width: 100%; aspect-ratio: 570 / 762; object-fit: cover; border-radius: var(--radius); }
 figcaption { font-size: 0.875rem; color: var(--muted); margin-top: 0.7rem; padding-left: 0.85rem; border-left: 1px solid var(--terracotta); line-height: 1.4; }
 @media (min-width: 900px) {
   .hero-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr); gap: clamp(3rem, 6vw, 6rem); }
@@ -287,17 +287,28 @@ figcaption { font-size: 0.875rem; color: var(--muted); margin-top: 0.7rem; paddi
 }
 
 /* Villa */
-.villa-intro { margin-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+.villa-intro { margin-bottom: clamp(2.5rem, 5vw, 3.5rem); display: grid; gap: 2.5rem; align-items: center; }
+.video-label { font-family: var(--serif); font-size: 1.3rem; line-height: 1.4; color: var(--charcoal); margin: 1.6rem 0 1.1rem; padding-top: 1.3rem; border-top: 1px solid var(--rule); }
+.video-link-wrap { margin: 0; }
+.villa-video { margin: 0; width: 100%; max-width: 360px; justify-self: center; }
+.villa-video video { display: block; width: 100%; height: auto; aspect-ratio: 608 / 1080; background: var(--charcoal); border-radius: var(--radius); }
+@media (min-width: 900px) {
+  .villa-intro { grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: clamp(3rem, 6vw, 5.5rem); }
+  .villa-video { justify-self: end; }
+}
 .villa-text { max-width: 40rem; }
 .villa-text h2 { margin-bottom: 1.5rem; }
 .villa-lede { font-family: var(--serif); font-size: 1.45rem; line-height: 1.4; color: var(--charcoal); }
 /* Aligned gallery: equal columns, equal gaps, one aspect ratio, captions in the same place.
-   Capped at 960px so the 464px-wide source frames are never shown much larger than native. */
-.gallery { display: grid; grid-template-columns: 1fr; gap: 2rem 1.5rem; max-width: 960px; }
+   3 columns on desktop (each image under its 608px native width), 2 on tablet, 1 on mobile. */
+.gallery { display: grid; grid-template-columns: 1fr; gap: 2rem 1.5rem; }
 .gallery figure { margin: 0; }
-.gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 50%; border-radius: var(--radius); }
+.gallery img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 50%; border-radius: var(--radius); }
 @media (min-width: 640px) {
   .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem 1.75rem; }
+}
+@media (min-width: 900px) {
+  .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 /* London yoga: compact image + text */
